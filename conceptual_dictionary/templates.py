@@ -23,8 +23,14 @@ sample_template = {
         "number_of_grains": 0,
     },
     "atom_attribute": {
+        # Option A — inline arrays (small systems / test cases)
         "position": None,
         "species": None,
+        # Option B — file reference (preferred for large MD snapshots)
+        # WorkflowParser resolves this relative to the YAML file's directory.
+        "file_path": None,    # path to structure file, e.g. '../DC3_benchmark_data_set/Al_fcc/T_0.10Tm_snapshot_1.gz'
+        "file_format": None,  # ASE format string, e.g. 'lammps-dump-text' (auto-detected if None)
+        "file_species": None, # species order for LAMMPS numeric types, e.g. ['Al']
     },
     "calculated_property": [],
 }
