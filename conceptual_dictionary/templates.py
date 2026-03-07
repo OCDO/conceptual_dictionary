@@ -28,15 +28,16 @@ sample_template = {
         "species": None,
         # Option B — file reference (preferred for large MD snapshots)
         # WorkflowParser resolves this relative to the YAML file's directory.
-        "file_path": None,    # path to structure file, e.g. '../DC3_benchmark_data_set/Al_fcc/T_0.10Tm_snapshot_1.gz'
+        "file_path": None,  # path to structure file, e.g. '../DC3_benchmark_data_set/Al_fcc/T_0.10Tm_snapshot_1.gz'
         "file_format": None,  # ASE format string, e.g. 'lammps-dump-text' (auto-detected if None)
-        "file_species": None, # species order for LAMMPS numeric types, e.g. ['Al']
+        "file_species": None,  # species order for LAMMPS numeric types, e.g. ['Al']
     },
     "calculated_property": [],
 }
 
 property_template = {
-    "basename": None,
+    "label": None,  # primary name read by atomRDF WorkflowParser
+    "basename": None,  # kept for backwards compat
     "value": None,
     "unit": None,
     "associate_to_sample": [],
@@ -55,11 +56,10 @@ workflow_template = {
         "potential_type": None,
         "uri": None,
     },
-    "software": {
-        "uri": None,
-        "version": None,
-        "label": None,
-    },
+    # software is a list of {uri, version, label} dicts
+    "software": [],
+    # single-software template kept for reference:
+    # {"uri": None, "version": None, "label": None}
     "workflow_manager": {
         "uri": None,
         "version": None,

@@ -6,6 +6,17 @@ from conceptual_dictionary.templates import (
     workflow_template,
     operation_template,
 )
+from conceptual_dictionary.vocabs import (
+    CONTROLLED_VALUES,
+    METHOD,
+    ALGORITHM,
+    DEGREES_OF_FREEDOM,
+    THERMODYNAMIC_ENSEMBLE,
+    POTENTIAL_TYPE,
+    XC_FUNCTIONAL,
+    OPERATION_METHOD,
+    GRAIN_BOUNDARY_TYPE,
+)
 
 __all__ = [
     "ConceptualDict",
@@ -13,4 +24,13 @@ __all__ = [
     "property_template",
     "workflow_template",
     "operation_template",
+    "CONTROLLED_VALUES",
+    "METHOD",
+    "ALGORITHM",
+    "DEGREES_OF_FREEDOM",
+    "THERMODYNAMIC_ENSEMBLE",
+    "POTENTIAL_TYPE",
+    "XC_FUNCTIONAL",
+    "OPERATION_METHOD",
+    "GRAIN_BOUNDARY_TYPE",
 ]
