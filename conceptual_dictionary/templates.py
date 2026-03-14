@@ -36,6 +36,7 @@ sample_template = {
 }
 
 property_template = {
+    "id": None,  # optional local ID; used to reference this property in math_operation operands
     "label": None,  # primary name read by atomRDF WorkflowParser
     "basename": None,  # kept for backwards compat
     "value": None,
@@ -47,10 +48,20 @@ workflow_template = {
     "algorithm": None,
     "method": None,
     "xc_functional": None,
-    "input_parameter": [],
+    # Each entry in these lists may include an optional 'id' field so later
+    # math_operation entries can reference the property by its local ID.
+    "input_parameter": [
+        # {"id": None, "label": None, "basename": None, "value": None, "unit": None}
+    ],
     "input_sample": [],
     "output_sample": [],
-    "calculated_property": [],
+    "output_parameter": [
+        # {"id": None, "label": None, "basename": None, "value": None, "unit": None}
+    ],
+    "calculated_property": [
+        # {"id": None, "label": None, "basename": None, "value": None, "unit": None,
+        #  "associate_to_sample": []}
+    ],
     "degrees_of_freedom": [],
     "interatomic_potential": {
         "potential_type": None,
@@ -88,6 +99,36 @@ dataset_template = {
     # dcterms:isPartOf — list of sample IDs that belong to this dataset
     # (these are added as triples on each sample: sample dcterms:isPartOf dataset)
     "samples": [],
+}
+
+# Math-operation template for ASMO arithmetic activities.
+# Operands may be a local property ID string (referencing an earlier
+# calculated / input / output property by its 'id' field) or a numeric
+# scalar.  The result is a CalculatedProperty and may carry its own 'id'
+# so subsequent math_operation entries can use it as an operand.
+math_operation_template = {
+    "type": None,  # Required: Subtraction | Addition | Multiplication | Division | Exponentiation
+    "result": {
+        "id": None,  # optional local ID for use as operand in later math operations
+        "label": None,
+        "basename": None,
+        "value": None,  # set if result value is known; otherwise leave None
+        "unit": None,
+        "associate_to_sample": [],
+    },
+    # ── Subtraction ──────────────────────────────────────────────────────────
+    "minuend": None,  # property ID or scalar
+    "subtrahend": None,  # property ID or scalar
+    # ── Addition ─────────────────────────────────────────────────────────────
+    "addend": [],  # list of property IDs and/or scalars
+    # ── Multiplication ───────────────────────────────────────────────────────
+    "factor": [],  # list of property IDs and/or scalars
+    # ── Division ─────────────────────────────────────────────────────────────
+    "dividend": None,  # property ID or scalar
+    "divisor": None,  # property ID or scalar
+    # ── Exponentiation ───────────────────────────────────────────────────────
+    "base": None,  # property ID or scalar
+    "exponent": None,  # property ID or scalar
 }
 
 # Operation template for atomic-scale transformations

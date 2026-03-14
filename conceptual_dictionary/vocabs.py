@@ -93,6 +93,17 @@ OPERATION_METHOD = frozenset(
     }
 )
 
+# atomrdf/datamodels/workflow/math_operations.py  MATH_OPERATION_MAP
+MATH_OPERATION_TYPE = frozenset(
+    {
+        "Subtraction",
+        "Addition",
+        "Multiplication",
+        "Division",
+        "Exponentiation",
+    }
+)
+
 # atomrdf/datamodels/defects/grainboundary.py
 # These are the YAML key names that atomRDF maps to PLDO.* RDF types.
 GRAIN_BOUNDARY_TYPE = frozenset(
@@ -112,6 +123,7 @@ YAML_TOP_LEVEL_KEYS = frozenset(
         "workflow",
         "operation",
         "activity",  # legacy alias for "operation"
+        "math_operation",
     }
 )
 
@@ -127,4 +139,5 @@ CONTROLLED_VALUES = {
     "workflow.potential_type": (POTENTIAL_TYPE, "workflow.interatomic_potential"),
     "workflow.xc_functional": (XC_FUNCTIONAL, "workflow entry"),
     "operation.method": (OPERATION_METHOD, "operation entry"),
+    "math_operation.type": (MATH_OPERATION_TYPE, "math_operation entry"),
 }

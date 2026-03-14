@@ -5,6 +5,7 @@ from conceptual_dictionary.templates import (
     property_template,
     workflow_template,
     operation_template,
+    math_operation_template,
 )
 from conceptual_dictionary.vocabs import (
     CONTROLLED_VALUES,
@@ -16,6 +17,8 @@ from conceptual_dictionary.vocabs import (
     XC_FUNCTIONAL,
     OPERATION_METHOD,
     GRAIN_BOUNDARY_TYPE,
+    MATH_OPERATION_TYPE,
+    YAML_TOP_LEVEL_KEYS,
 )
 
 __all__ = [
@@ -24,6 +27,7 @@ __all__ = [
     "property_template",
     "workflow_template",
     "operation_template",
+    "math_operation_template",
     "CONTROLLED_VALUES",
     "METHOD",
     "ALGORITHM",
@@ -33,4 +37,6 @@ __all__ = [
     "XC_FUNCTIONAL",
     "OPERATION_METHOD",
     "GRAIN_BOUNDARY_TYPE",
+    "MATH_OPERATION_TYPE",
+    "YAML_TOP_LEVEL_KEYS",
 ]
