@@ -65,6 +65,8 @@ POTENTIAL_TYPE = frozenset(
         "lj",
         "HDNNP",
         "hdnnp",
+        "grace",
+        "GRACE",  # GRACE machine learning potential
     }
 )
 
