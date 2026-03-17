@@ -1,0 +1,65 @@
+# Uniaxial tensile test for polycrystalline Fe
+# Reduced version for local machine (~200 atoms)
+
+units metal
+dimension 3
+boundary p p p
+atom_style atomic
+
+# Read structure
+read_data polycrystal.lmp
+
+# Interatomic potential - EAM/alloy for Fe (Ackland 2004)
+pair_style eam/alloy
+pair_coeff * * workflows/potentials/Fe_Ack.eam Fe
+
+# Equilibration and annealing cycle (reduced for speed)
+velocity all create 10 12345 mom yes rot yes dist gaussian
+
+# Heat cycle: 10K -> 600K -> 600K -> 10K
+# Phase 1: Heat from 10K to 600K
+fix 2 all temp/rescale 1 10 600 1.0 1.0
+fix 3 all nph x 0.0 0.0 0.1 y 0.0 0.0 0.1 z 0.0 0.0 0.1 drag 1.0 nreset 1000
+run 1000
+unfix 2
+unfix 3
+
+# Phase 2: Hold at 600K
+fix 2 all temp/rescale 1 600 600 1.0 1.0
+fix 3 all nph x 0.0 0.0 0.1 y 0.0 0.0 0.1 z 0.0 0.0 0.1 drag 1.0 nreset 1000
+run 1000
+unfix 2
+unfix 3
+
+# Phase 3: Cool from 600K to 10K
+fix 2 all temp/rescale 1 600 10 1.0 1.0
+fix 3 all nph x 0.0 0.0 0.1 y 0.0 0.0 0.1 z 0.0 0.0 0.1 drag 1.0 nreset 1000
+run 1000
+unfix 2
+unfix 3
+
+reset_timestep 0
+
+# Stress computation
+compute stress all pressure NULL virial
+variable sigmaxx equal c_stress[1]
+variable sigmayy equal c_stress[2]
+variable sigmazz equal c_stress[3]
+
+# Uniaxial deformation (NPH in x,y; deform in z)
+fix int all nph x 0.0 0.0 1.0 y 0.0 0.0 1.0
+fix def all deform 1 z erate 1e-4 units box remap x
+
+# Output stress and box dimensions
+fix out all print 50 "$(lx) $(ly) $(lz) ${sigmaxx} ${sigmayy} ${sigmazz}" file stress.dat screen no
+dump final all custom 3000 final.lammpstrj id type x y z
+
+# Run tensile test (reduced for speed)
+run 3000
+
+# Cleanup
+unfix int
+unfix def
+unfix out
+undump final
+2

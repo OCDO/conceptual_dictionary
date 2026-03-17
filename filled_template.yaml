@@ -1,0 +1,75 @@
+sample:
+  id: "sample1"
+  material:
+    element_ratio:
+      Fe: 1.0  # Single element, 100% Fe
+    crystal_structure:
+      spacegroup_symbol: null  # Not provided in the LAMMPS script
+      spacegroup_number: null  # Not provided in the LAMMPS script
+      unit_cell:
+        bravais_lattice: null  # Not provided in the LAMMPS script
+        lattice_parameter: null  # Not provided in the LAMMPS script
+        angle: []  # Not provided in the LAMMPS script
+  simulation_cell:
+    volume:
+      value: null  # Not provided in the LAMMPS script
+    number_of_atoms: null  # Not provided in the LAMMPS script
+    length: []  # Not provided in the LAMMPS script
+    vector: []  # Not provided in the LAMMPS script
+    angle: []  # Not provided in the LAMMPS script
+    repetitions: []  # Not provided in the LAMMPS script
+    grain_size: null  # Not provided in the LAMMPS script
+    number_of_grains: 0  # Polycrystalline implies multiple grains, but exact number is missing
+  atom_attribute:
+    position: null  # Defined in polycrystal.lmp, not provided here
+    species: null  # Defined in polycrystal.lmp, not provided here
+  calculated_property:
+    - basename: sigmaxx
+      value: null  # Calculated in the script, but no specific value provided
+      unit: null  # Units not explicitly mentioned
+    - basename: sigmayy
+      value: null  # Calculated in the script, but no specific value provided
+      unit: null  # Units not explicitly mentioned
+    - basename: sigmazz
+      value: null  # Calculated in the script, but no specific value provided
+      unit: null  # Units not explicitly mentioned
+workflow:
+  algorithm: Molecular dynamics
+  method: LAMMPS
+  xc_functional: null  # Not applicable for classical MD
+  input_parameter:
+    - units: metal
+    - dimension: 3
+    - boundary: p p p
+    - atom_style: atomic
+    - read_data: polycrystal.lmp
+    - pair_style: eam/alloy
+    - pair_coeff: "* * workflows/potentials/Fe_Ack.eam Fe"
+    - velocity: "all create 10 12345 mom yes rot yes dist gaussian"
+    - fix:
+        - "2 all temp/rescale 1 10 600 1.0 1.0"
+        - "3 all nph x 0.0 0.0 0.1 y 0.0 0.0 0.1 z 0.0 0.0 0.1 drag 1.0 nreset 1000"
+    - run: 1000
+    - unfix:
+        - 2
+        - 3
+    - reset_timestep: 0
+    - compute: "stress all pressure NULL virial"
+    - variable:
+        - "sigmaxx equal c_stress[1]"
+        - "sigmayy equal c_stress[2]"
+        - "sigmazz equal c_stress[3]"
+    - fix:
+        - "int all nph x 0.0 0.0 1.0 y 0.0 0.0 1.0"
+  input_sample:
+    - sample1
+  output_sample:
+    - sample1  # Assuming the same sample is used for input and output
+  calculated_property:
+    - sigmaxx
+    - sigmayy
+    - sigmazz
+  degrees_of_freedom: []  # Not explicitly mentioned in the script
+  interatomic_potential:
+    potential_type: eam/alloy
+    uri: workflows/potentials/Fe_Ack.eam

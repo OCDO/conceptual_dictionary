@@ -20,9 +20,15 @@ class ConceptualDict(dict):
         super().__init__(data, *args, **kwargs)
 
     def generate_id(self, length=7):
-        """Generate a random alphanumeric ID of given length."""
+        """Generate a random alphanumeric ID of given length.
+
+        Uses ``os.urandom`` rather than Python's ``random`` module so that
+        third-party libraries that call ``random.seed()`` (e.g. PyIron/LAMMPS
+        wrappers) cannot cause ID collisions across iterations.
+        """
+        import os
         chars = string.ascii_letters + string.digits
-        return "".join(random.choices(chars, k=length))
+        return "".join(chars[b % 62] for b in os.urandom(length))
 
     @staticmethod
     def _clean_data(obj: Any) -> Any:
