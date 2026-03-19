@@ -28,7 +28,6 @@ classifiers = [
 keywords = ["dictionary", "metadata", "serialization", "conceptual"]
 
 dependencies = [
-    "numpy",
     "pyyaml",
 ]
 
