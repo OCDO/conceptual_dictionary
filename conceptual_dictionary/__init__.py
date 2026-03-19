@@ -13,6 +13,8 @@ from conceptual_dictionary.templates import (
     grain_boundary_template,
     dislocation_template,
     defect_complex_template,
+    full_sample_template,
+    full_yaml_template,
 )
 from conceptual_dictionary.vocabs import (
     CONTROLLED_VALUES,
@@ -42,6 +44,8 @@ __all__ = [
     "grain_boundary_template",
     "dislocation_template",
     "defect_complex_template",
+    "full_sample_template",
+    "full_yaml_template",
     "CONTROLLED_VALUES",
     "METHOD",
     "ALGORITHM",
