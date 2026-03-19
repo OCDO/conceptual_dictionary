@@ -1,0 +1,231 @@
+{
+  "dataset": {
+    "identifier": null,
+    "title": "Al FCC energy-volume relaxation",
+    "creators": [
+      {
+        "id": "https://orcid.org/0000-0000-0000-0000",
+        "name": "Jane Doe"
+      }
+    ],
+    "publication": {
+      "id": null,
+      "identifier": null,
+      "title": null
+    },
+    "samples": [
+      "Al_fcc_relaxed"
+    ]
+  },
+  "computational_sample": [
+    {
+      "id": "Al_fcc_initial",
+      "material": {
+        "element_ratio": {
+          "Al": 1.0
+        },
+        "crystal_structure": {
+          "spacegroup_symbol": "Fm-3m",
+          "spacegroup_number": 225,
+          "unit_cell": {
+            "bravais_lattice": "https://www.wikidata.org/wiki/Q581614",
+            "lattice_parameter": [
+              4.05,
+              4.05,
+              4.05
+            ],
+            "angle": [
+              90.0,
+              90.0,
+              90.0
+            ]
+          }
+        }
+      },
+      "simulation_cell": {
+        "volume": {
+          "value": null
+        },
+        "number_of_atoms": 4,
+        "length": [
+          4.05,
+          4.05,
+          4.05
+        ],
+        "vector": [],
+        "angle": [
+          90.0,
+          90.0,
+          90.0
+        ],
+        "repetitions": [],
+        "grain_size": null,
+        "number_of_grains": 0
+      },
+      "atom_attribute": {
+        "position": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            2.025,
+            2.025,
+            0.0
+          ],
+          [
+            2.025,
+            0.0,
+            2.025
+          ],
+          [
+            0.0,
+            2.025,
+            2.025
+          ]
+        ],
+        "species": [
+          "Al",
+          "Al",
+          "Al",
+          "Al"
+        ]
+      },
+      "calculated_property": []
+    },
+    {
+      "id": "Al_fcc_relaxed",
+      "material": {
+        "element_ratio": {
+          "Al": 1.0
+        },
+        "crystal_structure": {
+          "spacegroup_symbol": "Fm-3m",
+          "spacegroup_number": 225,
+          "unit_cell": {
+            "bravais_lattice": "https://www.wikidata.org/wiki/Q581614",
+            "lattice_parameter": [
+              4.032,
+              4.032,
+              4.032
+            ],
+            "angle": [
+              90.0,
+              90.0,
+              90.0
+            ]
+          }
+        }
+      },
+      "simulation_cell": {
+        "volume": {
+          "value": 65.5483
+        },
+        "number_of_atoms": 4,
+        "length": [
+          4.032,
+          4.032,
+          4.032
+        ],
+        "vector": [],
+        "angle": [
+          90.0,
+          90.0,
+          90.0
+        ],
+        "repetitions": [],
+        "grain_size": null,
+        "number_of_grains": 0
+      },
+      "atom_attribute": {
+        "position": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            2.016,
+            2.016,
+            0.0
+          ],
+          [
+            2.016,
+            0.0,
+            2.016
+          ],
+          [
+            0.0,
+            2.016,
+            2.016
+          ]
+        ],
+        "species": [
+          "Al",
+          "Al",
+          "Al",
+          "Al"
+        ]
+      },
+      "calculated_property": []
+    }
+  ],
+  "workflow": [
+    {
+      "algorithm": null,
+      "method": "MolecularStatics",
+      "xc_functional": null,
+      "input_parameter": [],
+      "input_sample": [
+        "Al_fcc_initial"
+      ],
+      "output_sample": [
+        "Al_fcc_relaxed"
+      ],
+      "output_parameter": [],
+      "calculated_property": [
+        {
+          "id": null,
+          "label": "EquilibriumEnergy",
+          "basename": null,
+          "value": -3.36,
+          "unit": "EV",
+          "associate_to_sample": [
+            "Al_fcc_relaxed"
+          ]
+        },
+        {
+          "id": null,
+          "label": "EquilibriumVolume",
+          "basename": null,
+          "value": 65.5483,
+          "unit": "ANGSTROM3",
+          "associate_to_sample": [
+            "Al_fcc_relaxed"
+          ]
+        }
+      ],
+      "degrees_of_freedom": [
+        "AtomicPositionRelaxation",
+        "CellVolumeRelaxation"
+      ],
+      "interatomic_potential": {
+        "potential_type": "eam/alloy",
+        "uri": "https://doi.org/10.1103/physrevb.59.3393"
+      },
+      "software": [
+        {
+          "uri": "https://doi.org/10.1016/j.cpc.2021.108171",
+          "label": "LAMMPS"
+        }
+      ],
+      "workflow_manager": {
+        "uri": null,
+        "version": null,
+        "label": null
+      },
+      "thermodynamic_ensemble": null
+    }
+  ]
+}

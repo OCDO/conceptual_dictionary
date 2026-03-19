@@ -1,0 +1,138 @@
+{
+  "computational_sample": [
+    {
+      "id": "Al_sigma3_gb1",
+      "material": {
+        "element_ratio": {
+          "Al": 1.0
+        },
+        "crystal_structure": {
+          "spacegroup_symbol": "Fm-3m",
+          "spacegroup_number": 225,
+          "unit_cell": {
+            "bravais_lattice": "https://www.wikidata.org/wiki/Q581614",
+            "lattice_parameter": [
+              7.015,
+              117.967,
+              5.728
+            ],
+            "angle": [
+              90.0,
+              90.0,
+              90.0
+            ]
+          }
+        }
+      },
+      "simulation_cell": {
+        "volume": {
+          "value": null
+        },
+        "number_of_atoms": 284,
+        "length": [
+          7.015,
+          117.967,
+          5.728
+        ],
+        "vector": [],
+        "angle": [
+          90.0,
+          90.0,
+          90.0
+        ],
+        "repetitions": [],
+        "grain_size": null,
+        "number_of_grains": 0
+      },
+      "atom_attribute": {
+        "file_path": "./data/Al_sigma3_gb1.lammps",
+        "file_format": "lammps-data",
+        "file_species": [
+          "Al"
+        ]
+      },
+      "calculated_property": [],
+      "tilt_grain_boundary": {
+        "sigma": 3,
+        "plane": [
+          1.0,
+          1.0,
+          2.0
+        ],
+        "misorientation_angle": 109.47,
+        "rotation_axis": [
+          1,
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "id": "Al_sigma3_gb2",
+      "material": {
+        "element_ratio": {
+          "Al": 1.0
+        },
+        "crystal_structure": {
+          "spacegroup_symbol": "Fm-3m",
+          "spacegroup_number": 225,
+          "unit_cell": {
+            "bravais_lattice": "https://www.wikidata.org/wiki/Q581614",
+            "lattice_parameter": [
+              98.707,
+              136.841,
+              5.728
+            ],
+            "angle": [
+              90.0,
+              90.0,
+              90.0
+            ]
+          }
+        }
+      },
+      "simulation_cell": {
+        "volume": {
+          "value": null
+        },
+        "number_of_atoms": 4640,
+        "length": [
+          98.707,
+          136.841,
+          5.728
+        ],
+        "vector": [],
+        "angle": [
+          90.0,
+          90.0,
+          90.0
+        ],
+        "repetitions": [],
+        "grain_size": null,
+        "number_of_grains": 0
+      },
+      "atom_attribute": {
+        "file_path": "./data/Al_sigma3_gb2.lammps",
+        "file_format": "lammps-data",
+        "file_species": [
+          "Al"
+        ]
+      },
+      "calculated_property": [],
+      "tilt_grain_boundary": {
+        "sigma": 3,
+        "plane": [
+          2.0,
+          2.0,
+          3.0
+        ],
+        "misorientation_angle": 38.94,
+        "rotation_axis": [
+          1,
+          1,
+          0
+        ]
+      }
+    }
+  ]
+}
