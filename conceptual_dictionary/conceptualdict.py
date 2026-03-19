@@ -27,6 +27,7 @@ class ConceptualDict(dict):
         wrappers) cannot cause ID collisions across iterations.
         """
         import os
+
         chars = string.ascii_letters + string.digits
         return "".join(chars[b % 62] for b in os.urandom(length))
 

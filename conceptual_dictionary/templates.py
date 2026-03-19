@@ -144,3 +144,81 @@ operation_template = {
     "normal_vector": None,  # For Shear (optional): 3D vector, e.g., [1, 1, 1]
     "distance": None,  # For Shear (optional): float
 }
+
+# ── Point-defect templates ────────────────────────────────────────────────────
+# Use exactly ONE of `vacancy`, `substitutional`, or `interstitial` as a key
+# directly inside the sample dict (alongside material / simulation_cell etc.).
+# `point_defect` is a generic base and rarely needed on its own.
+
+vacancy_template = {
+    "concentration": None,  # atomic fraction (float), e.g. 0.004
+    "number": None,  # integer count of vacancies, e.g. 1
+}
+
+substitutional_template = {
+    "concentration": None,  # impurity concentration (atomic fraction), e.g. 0.01
+    "number": None,  # integer count of substitutional atoms, e.g. 2
+}
+
+interstitial_template = {
+    "concentration": None,  # impurity concentration (atomic fraction), e.g. 0.005
+    "number": None,  # integer count of interstitial atoms, e.g. 1
+}
+
+# ── Stacking-fault template ───────────────────────────────────────────────────
+# Use key `stacking_fault` directly inside the sample dict.
+
+stacking_fault_template = {
+    "plane": None,  # Miller indices of the fault plane, e.g. [1, 1, 1]
+    "displacement": None,  # displacement (shift) vector, e.g. [0.5, 0.5, 0.0]
+}
+
+# ── Grain-boundary templates ──────────────────────────────────────────────────
+# All five GB subtypes share the same fields below.  Choose the key that
+# matches the physical character of the boundary:
+#   grain_boundary                  — generic (unspecified type)
+#   tilt_grain_boundary             — pure tilt
+#   twist_grain_boundary            — pure twist
+#   symmetric_tilt_grain_boundary   — symmetric tilt
+#   mixed_grain_boundary            — mixed tilt+twist
+#
+# Place the chosen key directly inside the sample dict.
+
+grain_boundary_template = {
+    "sigma": None,  # CSL sigma value (integer), e.g. 3
+    "plane": None,  # GB plane Miller indices, e.g. [1.0, 1.0, 2.0]
+    "misorientation_angle": None,  # misorientation angle in degrees, e.g. 38.94
+    "rotation_axis": None,  # rotation axis (Miller indices), e.g. [1, 1, 0]
+}
+
+# ── Dislocation templates ─────────────────────────────────────────────────────
+# `dislocation`, `edge_dislocation`, and `screw_dislocation` all use the fields
+# below.  `mixed_dislocation` additionally accepts `character_angle`.
+# Place the chosen key directly inside the sample dict.
+
+dislocation_template = {
+    "line_direction": None,  # dislocation line direction vector, e.g. [1, 0, 0]
+    "burgers_vector": None,  # Burgers vector, e.g. [0.5, 0.5, 0.0]
+    "slip_system": {
+        "slip_direction": None,  # slip direction vector, e.g. [1, 1, 0]
+        "slip_plane": {
+            "normal": None,  # slip-plane normal vector, e.g. [1, 1, 1]
+        },
+    },
+    # Only required for mixed_dislocation:
+    # "character_angle": None,  # character angle in degrees (float), e.g. 45.0
+}
+
+# ── Defect-complex template ───────────────────────────────────────────────────
+# Marks two or more co-existing defects as forming a complex.
+# `ids` lists the YAML key names of the constituent defects used in the
+# same sample (e.g. ["vacancy", "substitutional"]).
+# Place key `defect_complex` directly inside the sample dict alongside the
+# individual defect keys.
+
+defect_complex_template = {
+    "ids": [],  # defect YAML key names forming the complex,
+    # e.g. ["vacancy", "substitutional"]
+    "relative_distance": None,  # distance between defects (string with unit),
+    # e.g. "2.5 Å"
+}
