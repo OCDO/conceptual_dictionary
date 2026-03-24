@@ -1,6 +1,6 @@
 # conceptual_dictionary
 
-A Python dictionary template for storing serializable metadata.
+A Python dictionary template for storing structured, serializable metadata in a lightweight, ontology-aligned format for simulation data and workflows.
 
 ## Installation
 

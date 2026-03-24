@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: conceptual_dictionary
+message: >-
+  If you use this software, please cite it using the metadata from this file. Funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) 
+  under the National Research Data Infrastructure – NFDI 38/1 – project number 460247524
+authors:
+- given-names: Sarath
+  family-names: Menon
+  affiliation: ICAMS, Ruhr-Universität Bochum
+  orcid: 'https://orcid.org/0000-0002-6776-1213'
+- given-names: Abril
+  family-names: Azocar Guzman
+  affiliation: Materials Data Science and Informatics (IAS-9), Forschungszentrum Jülich GmbH
+  orcid: 'https://orcid.org/0000-0001-7564-7990'
+date-released: '2026-03-19'
+doi: 
+url: 'https://github.com/OCDO/conceptual_dictionary/'
+license: "MIT"
+repository-code: 'https://github.com/OCDO/conceptual_dictionary/'
+type: software
+version: 0.3.0
