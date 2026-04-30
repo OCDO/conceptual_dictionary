@@ -372,6 +372,28 @@ Working YAML/JSON examples live in [`examples/`](examples/):
 - `grain_boundary.yaml` / `.json`
 - `examples.ipynb` — end-to-end notebook
 
+## Citation
+
+If you use `conceptual_dictionary` in your research, please cite:
+
+> S. Menon, A. Azocar Guzman, *et al.* "conceptual_dictionary: a serializable
+> metadata schema for computational materials science." arXiv:2604.06230.
+> <https://arxiv.org/abs/2604.06230>
+
+BibTeX:
+
+```bibtex
+@misc{conceptual_dictionary,
+  title        = {conceptual\_dictionary: a serializable metadata schema
+                  for computational materials science},
+  author       = {Menon, Sarath and Azocar Guzman, Abril},
+  year         = {2026},
+  eprint       = {2604.06230},
+  archivePrefix= {arXiv},
+  url          = {https://arxiv.org/abs/2604.06230}
+}
+```
+
 ## License
 
 MIT License — see [LICENSE](LICENSE).
