@@ -1,22 +1,30 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
-title: "conceptual_dictionary: a serializable metadata schema for computational materials science"
+message: "If you use this software, please cite the associated paper below."
+title: "conceptual_dictionary"
 authors:
-  - family-names: Menon
-    given-names: Sarath
   - family-names: Azocar Guzman
     given-names: Abril
+  - family-names: Menon
+    given-names: Sarath
+  - family-names: Hickel
+    given-names: Tilmann
+  - family-names: Sandfeld
+    given-names: Stefan
 version: 0.3.1
 license: MIT
 repository-code: "https://github.com/pyscal/conceptual_dictionary"
 preferred-citation:
   type: article
-  title: "conceptual_dictionary: a serializable metadata schema for computational materials science"
+  title: "Ontology-based knowledge graph infrastructure for interoperable atomistic simulation data"
   authors:
-    - family-names: Menon
-      given-names: Sarath
     - family-names: Azocar Guzman
       given-names: Abril
+    - family-names: Menon
+      given-names: Sarath
+    - family-names: Hickel
+      given-names: Tilmann
+    - family-names: Sandfeld
+      given-names: Stefan
   year: 2026
   url: "https://arxiv.org/abs/2604.06230"
   identifiers:

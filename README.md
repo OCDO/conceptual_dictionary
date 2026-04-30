@@ -374,23 +374,25 @@ Working YAML/JSON examples live in [`examples/`](examples/):
 
 ## Citation
 
-If you use `conceptual_dictionary` in your research, please cite:
+If you use `conceptual_dictionary` in your research, please cite the
+associated paper:
 
-> S. Menon, A. Azocar Guzman, *et al.* "conceptual_dictionary: a serializable
-> metadata schema for computational materials science." arXiv:2604.06230.
+> A. Azocar Guzman, S. Menon, T. Hickel, S. Sandfeld.
+> *Ontology-based knowledge graph infrastructure for interoperable atomistic
+> simulation data.* arXiv:2604.06230 (2026).
 > <https://arxiv.org/abs/2604.06230>
 
 BibTeX:
 
 ```bibtex
-@misc{conceptual_dictionary,
-  title        = {conceptual\_dictionary: a serializable metadata schema
-                  for computational materials science},
-  author       = {Menon, Sarath and Azocar Guzman, Abril},
-  year         = {2026},
-  eprint       = {2604.06230},
-  archivePrefix= {arXiv},
-  url          = {https://arxiv.org/abs/2604.06230}
+@misc{guzman2026ontologybasedknowledgegraphinfrastructure,
+      title={Ontology-based knowledge graph infrastructure for interoperable atomistic simulation data},
+      author={Abril Azocar Guzman and Sarath Menon and Tilmann Hickel and Stefan Sandfeld},
+      year={2026},
+      eprint={2604.06230},
+      archivePrefix={arXiv},
+      primaryClass={cs.DB},
+      url={https://arxiv.org/abs/2604.06230},
 }
 ```
 

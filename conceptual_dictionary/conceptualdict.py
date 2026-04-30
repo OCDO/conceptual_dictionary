@@ -42,13 +42,17 @@ class ConceptualDict(dict):
     """
 
     def __init__(self, *args, **kwargs):
-        data = {
+        super().__init__()
+        # default empty top-level sections
+        super().update({
             "computational_sample": [],
             "workflow": [],
             "operation": [],
             "math_operation": [],
-        }
-        super().__init__(data, *args, **kwargs)
+        })
+        # merge any user-provided mapping(s) on top of the defaults
+        if args or kwargs:
+            super().update(*args, **kwargs)
 
     def generate_id(self, length=7):
         """Generate a random alphanumeric ID of given length.
