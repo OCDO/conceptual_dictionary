@@ -1,0 +1,19 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: index
+chapters:
+  - file: docs/gettingstarted.md
+  - file: docs/quickstart.md
+  - file: docs/templates.md
+  - file: docs/conceptualdict.md
+  - file: docs/vocabularies.md
+  - file: docs/validation.md
+  - file: docs/examples.md
+    sections:
+    - file: examples/examples
+  - file: docs/extending.md
+  - file: docs/license.md
+  - file: docs/acknowledgements.md
+  - file: docs/api.rst
