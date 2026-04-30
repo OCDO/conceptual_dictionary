@@ -127,7 +127,7 @@ full_yaml_template = {
         "samples": [],  # list of sample IDs belonging to this dataset
     },
     # ── Samples — one entry per simulation snapshot / structure ───────────────
-    "samples": [full_sample_template],
+    "computational_sample": [full_sample_template],
     # ── Workflow steps — one entry per simulation / calculation ───────────────
     "workflow": [
         {
