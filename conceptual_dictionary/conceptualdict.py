@@ -10,14 +10,49 @@ from conceptual_dictionary.vocabs import CONTROLLED_VALUES
 
 
 class ConceptualDict(dict):
-    def __init__(self, *args, **kwargs):
-        data = {
+    """A ``dict`` subclass pre-populated with the top-level sections that
+    atomRDF's :class:`~atomrdf.io.workflow_parser.WorkflowParser` consumes.
+
+    On construction the instance contains four empty lists::
+
+        {
             "computational_sample": [],
             "workflow": [],
             "operation": [],
             "math_operation": [],
         }
-        super().__init__(data, *args, **kwargs)
+
+    Arbitrary additional top-level keys (e.g. ``"dataset"``) may be added at
+    any time via normal item assignment.  All standard ``dict`` methods
+    (``update``, ``get``, ``setdefault``, iteration, ...) are inherited.
+
+    Parameters
+    ----------
+    *args, **kwargs
+        Forwarded to ``dict.__init__`` *after* the default sections are
+        inserted, so passing a mapping merges it on top of the defaults::
+
+            ConceptualDict({"computational_sample": [sample_dict]})
+
+    Notes
+    -----
+    Serialization (:meth:`to_yaml`, :meth:`to_json`) automatically converts
+    numpy scalars/arrays to native Python types, so values written by
+    ASE / pyiron / LAMMPS callers can be stored without manual cleanup.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__()
+        # default empty top-level sections
+        super().update({
+            "computational_sample": [],
+            "workflow": [],
+            "operation": [],
+            "math_operation": [],
+        })
+        # merge any user-provided mapping(s) on top of the defaults
+        if args or kwargs:
+            super().update(*args, **kwargs)
 
     def generate_id(self, length=7):
         """Generate a random alphanumeric ID of given length.
@@ -33,6 +68,13 @@ class ConceptualDict(dict):
 
     @staticmethod
     def _clean_data(obj: Any) -> Any:
+        """Recursively convert numpy / non-JSON types to plain Python.
+
+        Used internally by :meth:`to_yaml` and :meth:`to_json` so callers can
+        store numpy arrays, numpy scalars and arbitrary objects without
+        worrying about serializer compatibility.  Unknown objects fall back
+        to ``str(obj)``.
+        """
         if isinstance(obj, dict):
             return {k: ConceptualDict._clean_data(v) for k, v in obj.items()}
         elif isinstance(obj, list):
@@ -54,12 +96,29 @@ class ConceptualDict(dict):
     # YAML I/O
     # --------------------
     def to_yaml(self, filepath: str, sort_keys: bool = False) -> None:
+        """Write the dictionary to ``filepath`` as YAML.
+
+        Parameters
+        ----------
+        filepath : str
+            Output path.  Existing files are overwritten.
+        sort_keys : bool, default False
+            Forwarded to :func:`yaml.safe_dump`.  The default preserves the
+            insertion order of the templates, which is friendlier for diffs
+            and human inspection.
+        """
         clean_dict = ConceptualDict._clean_data(dict(self))
         with open(filepath, "w") as f:
             yaml.safe_dump(clean_dict, f, sort_keys=sort_keys, allow_unicode=True)
 
     @classmethod
     def from_yaml(cls, filepath: str) -> "ConceptualDict":
+        """Load a YAML file into a new :class:`ConceptualDict`.
+
+        Top-level keys present in the file are merged on top of the default
+        empty sections, so partial files (e.g. only ``computational_sample``)
+        are accepted.
+        """
         with open(filepath, "r") as f:
             data = yaml.safe_load(f)
         kg = cls()
@@ -70,6 +129,18 @@ class ConceptualDict(dict):
     # JSON I/O
     # --------------------
     def to_json(self, filepath: str, sort_keys: bool = False, indent: int = 2) -> None:
+        """Write the dictionary to ``filepath`` as JSON.
+
+        Parameters
+        ----------
+        filepath : str
+            Output path.  Existing files are overwritten.
+        sort_keys : bool, default False
+            Forwarded to :func:`json.dump`.
+        indent : int, default 2
+            Forwarded to :func:`json.dump`.  Use ``None`` for a compact
+            single-line representation.
+        """
         clean_dict = ConceptualDict._clean_data(dict(self))
         with open(filepath, "w") as f:
             json.dump(
@@ -78,6 +149,11 @@ class ConceptualDict(dict):
 
     @classmethod
     def from_json(cls, filepath: str) -> "ConceptualDict":
+        """Load a JSON file into a new :class:`ConceptualDict`.
+
+        Top-level keys present in the file are merged on top of the default
+        empty sections, so partial files are accepted.
+        """
         with open(filepath, "r") as f:
             data = json.load(f)
         kg = cls()

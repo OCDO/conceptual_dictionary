@@ -75,9 +75,18 @@ POTENTIAL_TYPE = frozenset(
 # but listing known values makes typos visible.
 XC_FUNCTIONAL = frozenset(
     {
+        # short aliases
         "LDA",
         "GGA",
         "PBE",  # alias → GGA
+        # canonical names
+        "LocalDensityApproximation",
+        "GeneralizedGradientApproximation",
+        "PerdewBurkeErnzerhof",  # alias → GGA
+        "HybridFunctional",
+        "HybridGeneralizedGradientApproximation",
+        "HybridMetaGeneralizedGradientApproximation",
+        "MetaGeneralizedGradientApproximation",
     }
 )
 
